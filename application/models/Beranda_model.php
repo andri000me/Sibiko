@@ -49,8 +49,8 @@ class Beranda_model extends CI_Model {
 			$this->db->where("char_length(kelas_siswa) < 13");
 			$this->db->select_sum('point_pelanggaran','total');
 			$this->db->group_by('tbl_siswa.nis'); 
-			//$this->db->having('total > 20 ');
-			$this->db->having('tanggal_pelanggaran > ', date("Y-m-d"));
+			// $this->db->having('total > 20 ');
+			// $this->db->having('tanggal_pelanggaran > ', date("Y-m-d"));
 			$this->db->order_by('total','desc');
 			$this->db->limit(10);
 			$query = $this->db->get();
@@ -65,7 +65,7 @@ class Beranda_model extends CI_Model {
 			$this->db->where("char_length(kelas_siswa) < 13");
 			$this->db->select_sum('poin_penghargaan','total_penghargaan');
 			$this->db->group_by('tbl_siswa.nis'); 
-			$this->db->having('tanggal_penghargaan > ', date("Y-m-d"));
+			// $this->db->having('tanggal_penghargaan > ', date("Y-m-d"));
 			$this->db->limit(3);
 			$this->db->order_by('total_penghargaan','desc');
 			$query = $this->db->get();

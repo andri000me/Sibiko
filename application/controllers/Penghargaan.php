@@ -131,10 +131,14 @@ class Penghargaan extends CI_Controller {
 
 	function add_ajax_sub($id,$nis){
 		$url = site_url('penghargaan/getPoin/'.$nis);
+		$url2 = site_url('penghargaan/getPoinPenghargaan/'.$nis);
 		$poin = file_get_contents($url);
+		$poin2 = file_get_contents($url2);
 		$decode_poin = json_decode($poin, true);
+		$decode_poin2 = json_decode($poin2, true);
+		$total = (int)($decode_poin[0]['poin']) - (int)($decode_poin2[0]['poin']);
 
-		if (($decode_poin[0]['poin']) <= 75) {
+		if ($total <= 75) {
 			if ($id == 1) {
 				$query = $this->db->get_where('tbl_subkategori_penghargaan',array('id_kategori_penghargaan'=>1));
 				$data = "<option value=''>- Pilih Sub Penghargaan -</option>";
@@ -149,7 +153,8 @@ class Penghargaan extends CI_Controller {
 	        $data .= "<option value='".$value->id_subkategori_penghargaan."'>".$value->deskripsi_penghargaan."</option>";
 	    }
 		};
-    echo $data;
+
+		echo $data;
 	}
 	function add_ajax_point($id)
 	{
@@ -164,6 +169,13 @@ class Penghargaan extends CI_Controller {
 	{
 		$this->load->model('Pelanggaran_model');
 		$data = $this->Pelanggaran_model->get_poin($nis);
+		echo json_encode($data);
+	}
+
+	public function getPoinPenghargaan($nis)
+	{
+		$this->load->model('Pelanggaran_model');
+		$data = $this->Pelanggaran_model->get_poin_penghargaan($nis);
 		echo json_encode($data);
 	}
 

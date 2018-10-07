@@ -127,6 +127,18 @@ class Pelanggaran_model extends CI_Model {
 		return $query->result();
 	}
 
+	function get_poin_penghargaan($nis)
+	{
+		$this->db->select("SUM(poin_penghargaan) as poin");
+		$this->db->from('tbl_penghargaan');
+		$this->db->join('tbl_subkategori_penghargaan', 'tbl_subkategori_penghargaan.id_subkategori_penghargaan = tbl_penghargaan.subkategori_penghargaan');
+		$this->db->where("nis",$nis);
+		$this->db->where("id_kategori_penghargaan",2);
+
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	function get_point_kejadian($data) {
 		$condition = "tanggal_pelanggaran BETWEEN " . "'" . $data['date1'] . "'" . " AND " . "'" . $data['date2'] ."'";
 		$this->db->select('*');
@@ -180,6 +192,18 @@ class Pelanggaran_model extends CI_Model {
 
 		return $query->result();
     }
+
+   public function minus_pelanggaran($data){
+   		$condition = "nis LIKE " . "'" . $data['nis'] . "'" . " AND " .'id_kategori_penghargaan = 2'. " AND " . 'tanggal_penghargaan ' . "BETWEEN " . "'" . $data['date1'] . "'" . " AND " . "'" . $data['date2'] . "' ORDER BY 'tanggal_penghargaan' ASC";
+		$this->db->select('SUM(poin_penghargaan) as poin_penghargaan');
+		$this->db->from('tbl_penghargaan');
+		$this->db->join('tbl_subkategori_penghargaan', 'tbl_subkategori_penghargaan.id_subkategori_penghargaan = tbl_penghargaan.subkategori_penghargaan');
+        $this->db->where($condition);
+		$query = $this->db->get();
+
+
+		return $query->result();
+   }
 
     public function select_semua_data_siswa($data) {
 		$condition = "nis LIKE " . "'" . $data['nis'] . "'";

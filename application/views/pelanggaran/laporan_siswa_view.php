@@ -170,13 +170,35 @@
                <b>Catatan :</b>
                <table class="table table-bordered">
                 <tr>
+                    <td width="160px" height="10">Pengurangan Poin</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td width="160px">Point Penghargaan</td>
+                    <td>
+                        <?php foreach ($data3 as $key): ?>
+                            <?php 
+                                $poin_penghargaan = $key->poin_penghargaan; 
+                                echo $poin_penghargaan; 
+                            ?>
+                        <?php endforeach ?>
+                    </td>
+                </tr>
+               </table>
+               <table class="table table-bordered">
+                <tr>
                     <td width="160px" height="10">Jumlah Kejadian</td>
                     <td><?php echo " ". $no-1;?></td>
                 </tr>
                 <tr>
-                    <td width="160px">Jumlah Point</td>
+                    <td width="160px">Poins Pelanggaran</td>
                     <td><?php echo " ". $total;?></td>
                 </tr>
+                <tr>
+                    <td width="160px">Poin Total</td>
+                    <td><?php echo " ". $total-$poin_penghargaan;?></td>
+                </tr>
+
                </table>
                </div>
 	</div>

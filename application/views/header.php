@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title><?php echo $title; ?></title>
+    <script src="<?php base_url(); ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url('assets/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">

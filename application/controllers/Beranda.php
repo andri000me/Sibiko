@@ -43,11 +43,11 @@ class Beranda extends CI_Controller {
 		//tamplikan data
 		$data['query'] = $this->beranda->list_pelanggaran($config['per_page'], $id);
 		$data['kejadian']=$this->beranda->get_point_kejadian();	
-		$data['penghargaan']=$this->beranda->get_point_penghargaan();	
+		$data['penghargaan']=$this->beranda->get_point_penghargaan();
 
-            $this->load->view('header', $header);
-			$this->load->view('beranda_view', $data);
-			$this->load->view('footer');
+        $this->load->view('header', $header);
+		$this->load->view('beranda_view', $data);
+		$this->load->view('footer');
 	}
 		
 }

@@ -511,11 +511,13 @@
                 serviceUrl: site+'/bimbingan/search',
                 // fungsi ini akan dijalankan ketika user memilih salah satu hasil request
                 onSelect: function (suggestion) {
+                    $('#kategori_penghargaan option:first').prop('selected',true);
+                    $('#subkategori_penghargaan option:first').prop('selected',true);
+                    $('#poin_penghargaan').val("");
                     $('#nis').val(''+suggestion.nis); // membuat id 'v_nim' untuk ditampilkan
                     $('#kelas_siswa').val(''+suggestion.kelas_siswa); // membuat id 'v_jurusan' untuk ditampilkan
                     load_kategori();
-                    $('#subkategori_penghargaan').get(0).selectedIndex = 1;
-                    $('#poin_penghargaan').get(0).selectedIndex = 1;
+                    
                 }
             });
         });
@@ -602,6 +604,7 @@
               <label class="control-label col-md-3"></label>
               <div class="col-md-9">
                 <select name="poin_penghargaan" class="form-control" id="poin_penghargaan" required="required">
+                    <option class="form-control" value=''>-</option>
                 </select>
               </div>
             </div>

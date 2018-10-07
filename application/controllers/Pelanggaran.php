@@ -198,6 +198,7 @@ class Pelanggaran extends CI_Controller {
 		$semua = array(
 			'data' => $this->pelanggaran->select_data_siswa($data),
 			'data2' => $this->pelanggaran->select_biodata_siswa($data),
+			'data3' => $this->pelanggaran->minus_pelanggaran($data),
 			);
 
 		$this->load->model('pelanggaran');
